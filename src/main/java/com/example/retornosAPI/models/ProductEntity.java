@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.*;
 
 @Entity
 public class ProductEntity {
@@ -12,14 +13,23 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+   @NotBlank(message = "Nome é obrigatório")
+   @Size(min = 3, max = 100, message = "O nome deve ter entre 3 e 100 caracteres")
     private String name;
 
+    @Size(max = 500, message = "A descrição pode ter no máximo 500 caracteres")
     private String description;
 
+    @NotNull(message = "Preço é obrigatório")
+    @DecimalMin(value = "0.01", message = "O preço deve ser maior que 0")
     private Double price;
 
-    private int quantity;
+    @NotNull(message = "Quantidade em estoque é obrigatória")
+    @Min(value = 0, message = "A quantidade em estoque deve ser maior ou igual a 0")
+    private int stockQuantity;
 
+    @NotBlank(message = "Categoria é obrigatória")
+    @Pattern(regexp = "Eletrônicos|Roupas|Alimentos", message = "Categoria inválida")
     private String category;
 
     public ProductEntity() {
@@ -30,7 +40,7 @@ public class ProductEntity {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.quantity = quantity;
+        this.stockQuantity = quantity;
         this.category = category;
     }
 
@@ -70,11 +80,11 @@ public class ProductEntity {
     }
 
     public int getQuantity() {
-        return quantity;
+        return stockQuantity;
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        this.stockQuantity = quantity;
     }
 
     public String getCategory() {
