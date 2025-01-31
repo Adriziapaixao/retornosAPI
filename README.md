@@ -31,7 +31,7 @@ Parâmetros:
 - id (Path Variable): ID do produto a ser buscado.
 - Resposta (200 OK):
 
-```json
+    ```json
   {
     "id": 1
     "name": "Produto Exemplo",
@@ -41,48 +41,50 @@ Parâmetros:
     "category": "Eletrônicos"
   }
   
+
 - Resposta (404 Not Found):
 
   {
   "error": "Produto não encontrado"
   }
 
-Atualizar Produto 
-PUT /api/products/{id}:
+### Atualizar Produto ### 
+**PUT /api/products/{id}**:
 - Descrição: Atualiza os dados de um produto existente.
 Parâmetros:
 - id (Path Variable): ID do produto a ser atualizado.
-- Resposta (200 OK):
+  - Resposta (200 OK):
 
-Body (JSON):
+   ```json
+  {
+    "name": "Produto Atualizado",
+    "description": "Nova descrição",
+    "price": 150.0,
+    "quantity": 5,
+    "category": "Roupas"
+    }
 
-{
-"name": "Produto Atualizado",
-"description": "Nova descrição",
-"price": 150.0,
-"quantity": 5,
-"category": "Roupas"
-}
+- Resposta (404 Not Found):
+    
+  ```json
+  {
+    "id": 1,
+    "name": "Produto Atualizado",
+    "description": "Nova descrição",
+    "price": 150.0,
+    "quantity": 5,
+    "category": "Roupas"
+    }
 
 - Resposta (404 Not Found):
 
-{
-"id": 1,
-"name": "Produto Atualizado",
-"description": "Nova descrição",
-"price": 150.0,
-"quantity": 5,
-"category": "Roupas"
-}
+    ```json
+  {
+    "error": "Produto não encontrado"
+  }
 
-- Resposta (404 Not Found):
-
-{
-"error": "Produto não encontrado"
-}
-
-Excluir Produto 
-DELETE /api/products/{id}:
+### Excluir Produto ###
+**DELETE /api/products/{id}**:
 - Descrição: Remove um produto do sistema.
 
 Parâmetros:
@@ -90,6 +92,7 @@ Parâmetros:
 - Resposta (204 No Content): Sem conteúdo no corpo da resposta.
 - Resposta (404 Not Found):
 
-{
-"error": "Produto não encontrado"
-}
+    ```json
+  {
+    "error": "Produto não encontrado"
+  }
