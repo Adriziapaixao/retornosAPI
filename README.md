@@ -9,6 +9,20 @@ Este projeto implementa um sistema CRUD para gerenciar produtos, com validaçõe
 - **Quantidade em Estoque**: Obrigatório, número inteiro maior ou igual a 0.
 - **Categoria**: Obrigatório, deve ser uma das opções pré-definidas (Eletrônicos, Roupas, Alimentos).
 
+# Endpoints da API
+
+## Criar Produto
+- **POST** `/api/products`
+- **Descrição**: Cria um novo produto.
+- **Body (JSON)**:
+  ```json
+  {
+    "name": "Produto Exemplo",
+    "description": "Descrição do produto",
+    "price": 100.0,
+    "quantity": 10,
+    "category": "Eletrônicos"
+  }
 ### Buscar Produto por ID ###
 **GET /api/products/{id}**:
 - Descrição: Retorna os detalhes de um produto específico.
@@ -17,29 +31,24 @@ Parâmetros:
 - id (Path Variable): ID do produto a ser buscado.
 - Resposta (200 OK):
 
-{
-"id": 1,
-
-"name": "Produto Exemplo",
-
-"description": "Descrição do produto",
-
-"price": 100.0,
-
-"quantity": 10,
-
-"category": "Eletrônicos"
-
-}
-
+```json
+  {
+    "id": 1
+    "name": "Produto Exemplo",
+    "description": "Descrição do produto",
+    "price": 100.0,
+    "quantity": 10,
+    "category": "Eletrônicos"
+  }
+  
 - Resposta (404 Not Found):
 
   {
   "error": "Produto não encontrado"
   }
 
-### Atualizar Produto ###
-**PUT /api/products/{id}**:
+Atualizar Produto 
+PUT /api/products/{id}:
 - Descrição: Atualiza os dados de um produto existente.
 Parâmetros:
 - id (Path Variable): ID do produto a ser atualizado.
@@ -49,32 +58,21 @@ Body (JSON):
 
 {
 "name": "Produto Atualizado",
-
 "description": "Nova descrição",
-
 "price": 150.0,
-
 "quantity": 5,
-
 "category": "Roupas"
-
 }
 
 - Resposta (404 Not Found):
 
 {
 "id": 1,
-
 "name": "Produto Atualizado",
-
 "description": "Nova descrição",
-
 "price": 150.0,
-
 "quantity": 5,
-
 "category": "Roupas"
-
 }
 
 - Resposta (404 Not Found):
@@ -83,8 +81,8 @@ Body (JSON):
 "error": "Produto não encontrado"
 }
 
-### Excluir Produto ###
-**DELETE /api/products/{id}**:
+Excluir Produto 
+DELETE /api/products/{id}:
 - Descrição: Remove um produto do sistema.
 
 Parâmetros:
